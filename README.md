@@ -66,10 +66,10 @@ RAG_NEWS 致力于覆盖 RAG 应用的全流程关键环节：
    pre-commit install
    ```
 
-3. 启动/停止/重启服务：
+<!-- 3. 启动/停止/重启服务：
 
    ```bash
    source .venv/bin/activate
    export PYTHONPATH=$(pwd)
    bash bin/control.sh start/stop/restart
-   ```
+   ``` -->
