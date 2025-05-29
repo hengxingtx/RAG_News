@@ -1,8 +1,6 @@
 # RAG_NEWS
 
-## 🎉 关注本项目，共同进步
-
-⭐️ 点击右上角的 Star 关注 RAG_NEWs，可以获取最新发布的实时通知 !🌟
+## ⭐️  关注本项目，共同进步
 
 <div align="center">
   <img src="docs/rag_news.png" alt="RAG News 架构图" width="600">
