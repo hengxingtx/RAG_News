@@ -4,6 +4,10 @@
 
 ⭐️ 点击右上角的 Star 关注 RAG_NEWs，可以获取最新发布的实时通知 !🌟
 
+<div align="center">
+  <img src="docs/rag_news.png" alt="RAG News 架构图" width="600">
+</div>
+
 ## 💡 项目目标
 
 RAG_NEWS 是一个旨在实践和展示 RAG 技术栈的项目。其核心功能是：通过检索增强生成技术，从互联网信息或自有信息中提炼关键内容，并生成一篇高质量的总结性新闻报告。
