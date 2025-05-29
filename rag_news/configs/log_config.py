@@ -1,12 +1,9 @@
 #! python3
 # -*- encoding: utf-8 -*-
 ###############################################################
-#          @File    :   log_config.py
 #          @Time    :   2025/05/19 20:45:04
 #          @Author  :   heng
-#          @Version :   1.0
 #          @Contact :   hengsblog@163.com
-#          @Copyright (c) 2025 Baidu.com, Inc. All Rights Reserved
 ###############################################################
 """
 @comment
@@ -106,17 +103,4 @@ class LogConfig(object):
 
 data_logger = LogConfig.get_logger("data")
 model_logger = LogConfig.get_logger("model")
-
-
-if __name__ == "__main__":
-    # 记录不同级别的日志
-    data_logger.debug("这是一条调试信息")
-    data_logger.info("应用已启动")
-    model_logger.info("数据库连接成功")
-    model_logger.warning("API请求频率过高")
-
-    # 记录异常
-    try:
-        1 / 0
-    except Exception as e:
-        model_logger.exception(f"发生异常: {e}")
+main_logger = LogConfig.get_logger("main")
