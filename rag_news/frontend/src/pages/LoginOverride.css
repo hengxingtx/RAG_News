@@ -1,0 +1,68 @@
+/* 这个文件专门用于覆盖Ant Design的默认样式，确保输入框背景颜色为白色 */
+/* 使用非常高的优先级选择器 */
+
+/* 普通输入框 */
+.login-form .ant-input,
+.login-form input.ant-input,
+.login-form textarea.ant-input,
+html body .login-form .ant-input,
+#root .login-form .ant-input {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    background: #ffffff !important;
+}
+
+/* 输入框容器 */
+.login-form .ant-input-affix-wrapper,
+html body .login-form .ant-input-affix-wrapper,
+#root .login-form .ant-input-affix-wrapper {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    background: #ffffff !important;
+}
+
+/* 容器内的输入框 */
+.login-form .ant-input-affix-wrapper .ant-input,
+html body .login-form .ant-input-affix-wrapper .ant-input,
+#root .login-form .ant-input-affix-wrapper .ant-input {
+    background-color: transparent !important;
+}
+
+/* 密码输入框 */
+.login-form .ant-input-password,
+html body .login-form .ant-input-password,
+#root .login-form .ant-input-password {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    background: #ffffff !important;
+}
+
+/* 各种状态下的输入框 */
+.login-form .ant-input:hover,
+.login-form .ant-input:focus,
+.login-form .ant-input:active,
+.login-form .ant-input-focused,
+.login-form .ant-input-affix-wrapper:hover,
+.login-form .ant-input-affix-wrapper:focus,
+.login-form .ant-input-affix-wrapper:active,
+.login-form .ant-input-affix-wrapper-focused,
+#root .login-form .ant-input:hover,
+#root .login-form .ant-input:focus,
+#root .login-form .ant-input-focused,
+#root .login-form .ant-input-affix-wrapper:hover,
+#root .login-form .ant-input-affix-wrapper:focus,
+#root .login-form .ant-input-affix-wrapper-focused {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    background: #ffffff !important;
+}
+
+/* 处理自动填充状态 */
+.login-form input:-webkit-autofill,
+.login-form input:-webkit-autofill:hover,
+.login-form input:-webkit-autofill:focus,
+.login-form input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: #333 !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+}

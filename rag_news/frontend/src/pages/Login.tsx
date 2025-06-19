@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Form, Input, Button, Card, message, Typography } from 'antd';
 import { UserOutlined, LockOutlined, GlobalOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import './LoginOverride.css'; // 导入专门用于覆盖Ant Design样式的CSS
 
 const { Title, Text } = Typography;
 
@@ -18,6 +19,8 @@ const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [currentTime, setCurrentTime] = useState(new Date());
     const navigate = useNavigate();
+    const usernameInputRef = useRef<any>(null);
+    const passwordInputRef = useRef<any>(null);
 
     // 每秒更新一次时间
     useEffect(() => {
@@ -37,6 +40,99 @@ const Login: React.FC = () => {
             document.head.removeChild(link);
         };
     }, []);
+
+    // 专门处理从其他页面返回时的样式
+    useEffect(() => {
+        // 当组件挂载或重新渲染时检查和修复样式
+        const applyStyles = () => {
+            // 短暂延迟以确保DOM已完全加载
+            setTimeout(() => {
+                const fixBackgrounds = () => {
+                    // 查找所有输入框并设置其背景色为白色
+                    const allInputs = document.querySelectorAll('.login-form .ant-input, .login-form .ant-input-affix-wrapper');
+                    allInputs.forEach((input) => {
+                        if (input instanceof HTMLElement) {
+                            input.style.setProperty('background-color', '#ffffff', 'important');
+                            input.style.setProperty('background', '#ffffff', 'important');
+                        }
+                    });
+                };
+
+                // 立即应用一次
+                fixBackgrounds();
+
+                // 然后延迟再应用几次，确保在DOM更新后样式仍然正确
+                setTimeout(fixBackgrounds, 100);
+                setTimeout(fixBackgrounds, 500);
+                setTimeout(fixBackgrounds, 1000);
+            }, 50);
+        };
+
+        // 页面加载时应用样式
+        applyStyles();
+
+        // 页面获得焦点时重新应用样式
+        window.addEventListener('focus', applyStyles);
+
+        // 清理
+        return () => {
+            window.removeEventListener('focus', applyStyles);
+        };
+    }, []);
+
+    // 保持输入框背景色为白色
+    useEffect(() => {
+        // 修复输入框背景色的函数
+        const fixInputBackground = () => {
+            // 修复输入框背景色
+            const inputs = document.querySelectorAll<HTMLElement>('.login-form .ant-input, .login-form .ant-input-affix-wrapper');
+            inputs.forEach(input => {
+                input.style.backgroundColor = '#ffffff';
+                input.style.background = '#ffffff';
+            });
+        };
+
+        // 初始设置
+        fixInputBackground();
+
+        // 创建MutationObserver监视DOM变化
+        const observer = new MutationObserver((mutations) => {
+            fixInputBackground();
+        });
+
+        // 开始观察文档中与登录表单相关的部分
+        const loginForm = document.querySelector('.login-form');
+        if (loginForm) {
+            observer.observe(loginForm, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ['style', 'class']
+            });
+        }
+
+        // 每隔一段时间检查一次并修复
+        const interval = setInterval(fixInputBackground, 300);
+
+        // 组件卸载时清理
+        return () => {
+            clearInterval(interval);
+            observer.disconnect();
+        };
+    }, []);
+
+    // 处理输入框失去焦点事件
+    const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        e.target.style.backgroundColor = '#ffffff';
+        e.target.style.background = '#ffffff';
+
+        // 如果是包含前缀的输入框，需要修复容器
+        const wrapper = e.target.closest('.ant-input-affix-wrapper') as HTMLElement;
+        if (wrapper) {
+            wrapper.style.backgroundColor = '#ffffff';
+            wrapper.style.background = '#ffffff';
+        }
+    };
 
     const onFinish = async (values: LoginForm) => {
         try {
@@ -140,6 +236,8 @@ const Login: React.FC = () => {
                                     backgroundColor: '#ffffff',
                                     background: '#ffffff'
                                 }}
+                                ref={usernameInputRef}
+                                onBlur={handleInputBlur}
                             />
                         </Form.Item>
 
@@ -156,6 +254,8 @@ const Login: React.FC = () => {
                                     backgroundColor: '#ffffff',
                                     background: '#ffffff'
                                 }}
+                                ref={passwordInputRef}
+                                onBlur={handleInputBlur}
                             />
                         </Form.Item>
 
