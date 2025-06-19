@@ -1,0 +1,71 @@
+.writing-content {
+    padding: 20px;
+}
+
+.generated-result {
+    margin-top: 20px;
+    border-left: 4px solid #1890ff;
+    padding-left: 15px;
+    background-color: #f9f9f9;
+}
+
+.ant-card-head-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.ant-layout-sider {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+.ant-layout-header .logo {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.generate-btn {
+    background: linear-gradient(45deg, #0f5e9c, #2bb5f4);
+    border: none;
+    box-shadow: 0 2px 6px rgba(15, 94, 156, 0.4);
+    transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 94, 156, 0.6);
+}
+
+.content-type-selector {
+    margin-bottom: 16px;
+}
+
+.prompt-textarea {
+    border-radius: 6px;
+    resize: vertical;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.result-card {
+    animation: fadeIn 0.5s ease;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .ant-layout-sider {
+        display: none;
+    }
+
+    .content-type-selector {
+        flex-direction: column;
+    }
+}

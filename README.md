@@ -38,7 +38,7 @@ RAG_NEWS 致力于覆盖 RAG 应用的全流程关键环节：
 
 ● ✅ 抑制幻觉 (Hallucination Mitigation)：：在回答中提供多种信息来源。
 
-● 🖥️ 用户友好界面：使用streamlit搭建的自定义管理界面。
+● 🖥️ 用户友好界面：使用前端框架ReAct搭建的自定义管理界面。
 
 ● 📝 智能新闻创作引擎： 借鉴并融合业界 RAG 系统的最佳实践，设计并实现了流畅、连贯且信息丰富的新闻稿件自动生成功能。
 
@@ -72,7 +72,6 @@ RAG_NEWS 致力于覆盖 RAG 应用的全流程关键环节：
    git clone https://github.com/hengxingtx/RAG_News.git
    cd RAG_News/
    uv sync --python 3.10 --all-extras
-   uv run download_deps.py
    pre-commit install
    ```
 

@@ -1,0 +1,595 @@
+/* 引入谷歌字体 - 这里选择了几个艺术感强的字体作为例子 */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Audiowide&family=Russo+One&family=Bungee+Inline&family=Faster+One&family=Press+Start+2P&display=swap');
+
+.login-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #e6f7ff;
+    /* 淡蓝色背景 */
+    overflow: hidden;
+    font-family: 'Nunito', 'Arial', sans-serif;
+    position: relative;
+}
+
+/* 添加背景装饰 */
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14, 196, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 0;
+}
+
+.login-container::after {
+    content: '';
+    position: absolute;
+    bottom: -5%;
+    left: 30%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14, 196, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 0;
+}
+
+/* 左侧大图区域 */
+.login-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+    border-radius: 0 30px 30px 0;
+    margin-right: -30px;
+    /* 创建重叠效果 */
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.login-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 可选值: cover(填满容器可能裁剪), contain(完整显示), fill(拉伸填满) */
+    position: relative;
+    z-index: 1;
+}
+
+.login-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(14, 196, 255, 0.3) 0%, rgba(14, 196, 255, 0.1) 100%);
+    z-index: 2;
+}
+
+.login-image-text {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    z-index: 3;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.login-image-text h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.login-image-text p {
+    font-size: 16px;
+    max-width: 400px;
+}
+
+/* 右侧登录区域调整 */
+.login-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* 改为居中对齐 */
+    padding: 40px;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+/* 登录标题区域调整 */
+.login-header {
+    margin-bottom: 40px;
+    text-align: center;
+    /* 改为居中对齐 */
+    width: 100%;
+    max-width: 420px;
+}
+
+/* 为图片logo准备的样式 */
+.login-logo-image {
+    height: 100px;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-logo {
+    height: 50px;
+    margin-bottom: 15px;
+    color: #0880b3;
+}
+
+.login-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0880b3;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.login-subtitle {
+    color: #555;
+    font-size: 16px;
+    margin: 25px 0 0 0;
+    display: block;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(8, 128, 179, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.85) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    transform: perspective(1000px) rotateX(2deg);
+    transform-origin: center bottom;
+}
+
+.login-card:hover {
+    transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+    box-shadow: 0 20px 40px rgba(8, 128, 179, 0.2), 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-card .ant-card-head {
+    border-bottom: none;
+    padding: 20px 24px 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(240, 249, 255, 0.8));
+    position: relative;
+    z-index: 1;
+}
+
+.login-card .ant-card-head-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.login-card .ant-card-body {
+    padding: 20px 24px 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+    position: relative;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.login-form-item {
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.login-form-item::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(14, 196, 255, 0.2), transparent);
+    z-index: 0;
+}
+
+.login-input {
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid rgba(14, 196, 255, 0.3);
+    background-color: #ffffff !important;
+    transition: all 0.3s;
+    padding: 4px 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.login-input:focus,
+.login-input:hover {
+    border-color: #0ec4ff;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 2px rgba(14, 196, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.02);
+    transform: translateY(-1px);
+}
+
+.login-form .ant-input-affix-wrapper {
+    border-radius: 10px;
+    border: 1px solid rgba(14, 196, 255, 0.3);
+    background-color: #ffffff !important;
+    transition: all 0.3s;
+    height: 48px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.login-form .ant-input-affix-wrapper:hover,
+.login-form .ant-input-affix-wrapper:focus,
+.login-form .ant-input-affix-wrapper-focused {
+    border-color: #0ec4ff;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 2px rgba(14, 196, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.02);
+    transform: translateY(-1px);
+}
+
+.login-form .ant-input-affix-wrapper .ant-input {
+    background-color: transparent !important;
+    height: 100%;
+}
+
+.login-form .ant-input-affix-wrapper .ant-input-prefix {
+    color: #0880b3;
+    margin-right: 10px;
+}
+
+.login-button {
+    height: 48px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #0880b3, #0ec4ff);
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 8px 15px rgba(14, 196, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:hover {
+    transform: translateY(-2px) translateZ(0) scale(1.01);
+    box-shadow: 0 12px 20px rgba(14, 196, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    background: linear-gradient(90deg, #0897d1, #0fdbff);
+}
+
+.login-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    transform: rotate(45deg);
+    animation: shine 3s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0% {
+        transform: translate(-100%, -100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translate(100%, 100%) rotate(45deg);
+    }
+}
+
+.tech-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 8px 10px;
+    font-family: 'Nunito', 'Arial', sans-serif;
+    font-size: 12px;
+    color: #0880b3;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.tech-time {
+    display: flex;
+    align-items: center;
+}
+
+.tech-icon {
+    margin-right: 8px;
+    color: #0880b3;
+}
+
+.tech-status {
+    display: flex;
+    align-items: center;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #0ec4ff;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: blink 2s infinite;
+    box-shadow: 0 0 5px #0ec4ff, 0 0 10px rgba(14, 196, 255, 0.5);
+}
+
+.status-text {
+    color: #0880b3 !important;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* 添加装饰元素 */
+.login-decoration {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(14, 196, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    z-index: 0;
+}
+
+/* 为更宽的区域添加背景装饰 */
+.login-right-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(14, 196, 255, 0.03) 0%, rgba(255, 255, 255, 0) 60%);
+    z-index: -1;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .login-container {
+        flex-direction: column;
+        background: #e6f7ff;
+    }
+
+    .login-left {
+        flex: none;
+        height: 200px;
+        padding: 0;
+        margin: 0;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .login-right {
+        flex: 1;
+        padding: 30px;
+        align-items: center;
+        /* 在小屏幕上居中显示 */
+    }
+
+    .login-header {
+        margin-bottom: 20px;
+        text-align: center;
+        /* 在小屏幕上居中显示 */
+    }
+
+    .login-logo-image {
+        height: 60px;
+        /* 小屏幕上稍微小一点 */
+    }
+
+    .login-image-text {
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .login-image-text h2 {
+        font-size: 22px;
+    }
+
+    .login-image-text p {
+        font-size: 14px;
+    }
+}
+
+/* 平板电脑响应式调整 */
+@media (min-width: 768px) and (max-width: 1200px) {
+    .login-right {
+        padding: 30px;
+    }
+
+    .login-card {
+        max-width: 380px;
+    }
+}
+
+/* 较小屏幕的桌面或笔记本电脑 */
+@media (min-width: 1201px) and (max-width: 1440px) {
+    .login-left {
+        margin-right: -20px;
+    }
+
+    .login-right {
+        padding: 40px;
+    }
+}
+
+/* 下面是几种不同的艺术字体效果，您可以通过在 Login.tsx 中修改类名来切换 */
+
+/* 默认科技风艺术字体 */
+.art-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #0880b3, #0ec4ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(14, 196, 255, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+/* 添加霓虹灯效果 */
+.art-title::after {
+    content: "RAG NEWS";
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    filter: blur(10px);
+    color: rgba(14, 196, 255, 0.6);
+}
+
+/* 游戏风格艺术字 */
+.art-title-game {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #43d9ff;
+    text-shadow:
+        3px 3px 0 #001d3d,
+        -3px 3px 0 #001d3d,
+        -3px -3px 0 #001d3d,
+        3px -3px 0 #001d3d;
+    letter-spacing: 1px;
+}
+
+/* 金属风格艺术字 */
+.art-title-metal {
+    font-family: 'Russo One', sans-serif;
+    font-size: 46px;
+    text-align: center;
+    margin-bottom: 15px;
+    background: linear-gradient(to bottom, #f0f0f0 0%, #b0b0b0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    letter-spacing: 1px;
+}
+
+/* 未来风格艺术字 */
+.art-title-future {
+    font-family: 'Audiowide', cursive;
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #00ffea;
+    text-shadow:
+        0 0 5px #00ffea,
+        0 0 10px #00ffea,
+        0 0 15px #00aeff,
+        0 0 20px #00aeff;
+    position: relative;
+    letter-spacing: 2px;
+}
+
+/* 凸起质感艺术字 */
+.art-title-emboss {
+    font-family: 'Bungee Inline', cursive;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #0880b3;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px 1px 0 rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+}
+
+/* 适应小屏幕时的字体大小 */
+@media (max-width: 992px) {
+
+    .art-title,
+    .art-title-metal,
+    .art-title-future,
+    .art-title-emboss {
+        font-size: 32px;
+    }
+
+    .art-title-game {
+        font-size: 30px;
+        /* 调整小屏幕上的游戏风格字体大小，原值是22px */
+    }
+}
+
+/* 添加卡片边缘发光效果 */
+.login-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    box-shadow: inset 0 0 0 1px rgba(14, 196, 255, 0.2);
+    pointer-events: none;
+}
+
+/* 输入框在所有状态下保持白色背景 */
+.login-form .ant-input,
+.login-form .ant-input:hover,
+.login-form .ant-input:focus,
+.login-form .ant-input-focused,
+.login-form .ant-input-affix-wrapper,
+.login-form .ant-input-affix-wrapper:hover,
+.login-form .ant-input-affix-wrapper:focus,
+.login-form .ant-input-affix-wrapper-focused,
+.login-form .ant-input-affix-wrapper-status-error,
+.login-form .ant-input-affix-wrapper-status-success,
+.login-form .ant-input-affix-wrapper-disabled {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+}
+
+/* 确保输入框内部所有元素背景色也是白色 */
+.login-form .ant-input-affix-wrapper .ant-input,
+.login-form .ant-input-affix-wrapper-focused .ant-input,
+.login-form .ant-input-affix-wrapper:focus .ant-input,
+.login-form .ant-input-affix-wrapper:hover .ant-input {
+    background-color: transparent !important;
+}
+
+/* 针对密码框的特殊处理 */
+.login-form .ant-input-password,
+.login-form .ant-input-password-input,
+.login-form .ant-input-password:hover,
+.login-form .ant-input-password:focus,
+.login-form .ant-input-password-focused {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+}
