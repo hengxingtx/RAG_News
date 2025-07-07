@@ -177,3 +177,4 @@ cython_debug/
 # data
 data/
 crawler/
+rag_news/configs/config.yaml

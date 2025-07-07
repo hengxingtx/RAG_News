@@ -128,9 +128,6 @@ def setup_logger(
             diagnose=True,
         )
 
-    _logger.info(f"日志配置已完成: 环境={env}, 控制台级别={console_level}, 文件级别={file_level}")
-    _logger.info(f"日志文件路径: {log_path}，按小时轮转")
-
     return _logger
 
 
