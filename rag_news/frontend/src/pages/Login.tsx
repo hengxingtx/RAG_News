@@ -13,7 +13,7 @@ interface LoginForm {
 }
 
 // API基础URL
-const API_BASE_URL = 'http://localhost:8007';
+const API_BASE_URL = 'http://localhost:8001';
 
 const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);

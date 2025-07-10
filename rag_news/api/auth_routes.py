@@ -1,10 +1,21 @@
+#! python3
+# -*- encoding: utf-8 -*-
+###############################################################
+#          @Time    :   2025/07/09 17:40:36
+#          @Author  :   heng
+#          @Contact :   hengsblog@163.com
+###############################################################
+"""
+@comment: 用户认证路由
+"""
+
 from datetime import timedelta
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from rag_news.core.database import get_db
-from rag_news.api.auth import (
+from rag_news.api.auth_utils import (
     authenticate_user, create_access_token,
     Token, ACCESS_TOKEN_EXPIRE_MINUTES, get_current_active_user
 )
@@ -44,4 +55,4 @@ async def read_users_me(current_user = Depends(get_current_active_user)):
         "username": current_user.username,
         "email": current_user.email,
         "id": current_user.id
-    }
+    } 

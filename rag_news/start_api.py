@@ -41,7 +41,7 @@ def is_port_in_use(port, host='127.0.0.1'):
             return True
 
 
-def find_available_port(start_port=8000, max_port=8100):
+def find_available_port(start_port=8001, max_port=8100):
     """查找可用端口，从start_port开始，最大到max_port"""
     for port in range(start_port, max_port):
         if not is_port_in_use(port):
@@ -49,7 +49,7 @@ def find_available_port(start_port=8000, max_port=8100):
     return None
 
 
-def start_server(host="127.0.0.1", port=8000, reload=True, auto_port=True):
+def start_server(host="127.0.0.1", port=8001, reload=True, auto_port=True):
     """启动API服务器"""
     try:
         # 检查端口是否被占用
@@ -84,7 +84,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="RAG News API服务器")
     parser.add_argument("--host", default="127.0.0.1", help="服务器主机地址")
-    parser.add_argument("--port", type=int, default=8000, help="服务器端口")
+    parser.add_argument("--port", type=int, default=8001, help="服务器端口")
     parser.add_argument(
         "--no-reload", action="store_false", dest="reload", help="禁用热重载"
     )

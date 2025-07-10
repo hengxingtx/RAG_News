@@ -99,7 +99,7 @@ python -m rag_news.api.install_dependencies
 
 ### 前端API连接问题
 
-如果前端无法连接到后端API，请确保后端服务器运行在端口8000上。如果需要更改API地址，请修改`rag_news/frontend/src/pages/Login.tsx`文件中的`API_BASE_URL`常量。
+如果前端无法连接到后端API，请确保后端服务器运行在端口8001上。如果需要更改API地址，请修改`rag_news/frontend/src/pages/Login.tsx`文件中的`API_BASE_URL`常量。
 
 ### "Missing script: start" 错误
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Button, Input, Card, Typography, Select, message } from 'antd';
-import { EditOutlined, SendOutlined, FileTextOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { EditOutlined, SendOutlined, FileTextOutlined, UserOutlined, LogoutOutlined, DatabaseOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import './Writing.css';
 
@@ -124,6 +124,9 @@ const Writing: React.FC = () => {
                         defaultSelectedKeys={['writing']}
                         style={{ height: '100%', borderRight: 0 }}
                     >
+                        <Menu.Item key="knowledge-base" icon={<DatabaseOutlined />} onClick={() => navigate('/knowledge-base')}>
+                            知识库管理
+                        </Menu.Item>
                         <Menu.Item key="writing" icon={<EditOutlined />}>
                             智能写作
                         </Menu.Item>
