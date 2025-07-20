@@ -48,7 +48,7 @@ THRESHOLD_Summary = 0.1
 LOCAL_EMBED_PATH = "./embedding_models/embedding_fengkong"
 LOCAL_RERANK_PATH = "./embedding_models/rerank_model"
 
-LOCAL_RERANK_SERVICE_URL = "localhost:8001"
+LOCAL_RERANK_SERVICE_URL = "localhost:8006"
 LOCAL_RERANK_MODEL_NAME = "rerank"
 LOCAL_RERANK_MAX_LENGTH = 512
 LOCAL_RERANK_BATCH = 1
@@ -62,9 +62,9 @@ LOCAL_EMBED_THREADS = 1
 HOSTNAME = "localhost"
 
 # port配置
-KNOWLEDGE_DB_PORT = 8001
+KNOWLEDGE_DB_PORT = 8006
 
 # 模型配置
-Device = 'cpu'
+Device = "cpu"
 UsedModel = Qwen3
 UsedModel_Thinking = Qwen3Thinking

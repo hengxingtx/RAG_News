@@ -31,7 +31,7 @@ except ImportError as e:
     sys.exit(1)
 
 
-def is_port_in_use(port, host='127.0.0.1'):
+def is_port_in_use(port, host="127.0.0.1"):
     """检查指定端口是否被占用"""
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         try:
@@ -41,7 +41,7 @@ def is_port_in_use(port, host='127.0.0.1'):
             return True
 
 
-def find_available_port(start_port=8001, max_port=8100):
+def find_available_port(start_port=8006, max_port=8100):
     """查找可用端口，从start_port开始，最大到max_port"""
     for port in range(start_port, max_port):
         if not is_port_in_use(port):
@@ -49,7 +49,7 @@ def find_available_port(start_port=8001, max_port=8100):
     return None
 
 
-def start_server(host="127.0.0.1", port=8001, reload=True, auto_port=True):
+def start_server(host="127.0.0.1", port=8006, reload=True, auto_port=True):
     """启动API服务器"""
     try:
         # 检查端口是否被占用
@@ -64,9 +64,11 @@ def start_server(host="127.0.0.1", port=8001, reload=True, auto_port=True):
                     print(f"错误: 在端口范围内未找到可用端口，请手动指定其他端口。")
                     sys.exit(1)
             else:
-                print(f"错误: 端口 {port} 已被占用，请尝试使用其他端口，例如：--port 8001")
+                print(
+                    f"错误: 端口 {port} 已被占用，请尝试使用其他端口，例如：--port 8006"
+                )
                 sys.exit(1)
-                
+
         print(f"正在启动RAG News API服务器，地址: http://{host}:{port}")
         # 导入app对象
         from rag_news.api.server import app
@@ -84,14 +86,18 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="RAG News API服务器")
     parser.add_argument("--host", default="127.0.0.1", help="服务器主机地址")
-    parser.add_argument("--port", type=int, default=8001, help="服务器端口")
+    parser.add_argument("--port", type=int, default=8006, help="服务器端口")
     parser.add_argument(
         "--no-reload", action="store_false", dest="reload", help="禁用热重载"
     )
     parser.add_argument(
-        "--no-auto-port", action="store_false", dest="auto_port", 
-        help="禁用自动端口查找（如果指定端口被占用）"
+        "--no-auto-port",
+        action="store_false",
+        dest="auto_port",
+        help="禁用自动端口查找（如果指定端口被占用）",
     )
 
     args = parser.parse_args()
-    start_server(host=args.host, port=args.port, reload=args.reload, auto_port=args.auto_port)
+    start_server(
+        host=args.host, port=args.port, reload=args.reload, auto_port=args.auto_port
+    )
