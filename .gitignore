@@ -178,3 +178,6 @@ cython_debug/
 data/
 crawler/
 rag_news/configs/config.yaml
+*newsnow/
+*cache/
+rag_news/sources/*

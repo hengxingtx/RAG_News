@@ -57,7 +57,7 @@ GPT4_MODEL = ChatOpenAI(
 
 # 使用联网工具
 GPT4_MODEL_WITH_WEB = ChatOpenAI(
-    model="gpt-4o-mini",  # 或 "gpt-4o", "gpt-4o-mini" 等
+    model="gpt-4",  # 或 "gpt-4o", "gpt-4o-mini" 等
     temperature=0.7,
     max_tokens=1500,
     timeout=60,
@@ -96,9 +96,8 @@ def parse_gpt4_web_response(resp):
 
 def main():
     """main"""
-    result = Qwen3_MODEL_WITH_WEB.invoke("10个字描述北京")
-    # result = parse_gpt4_web_response(result)["text"]
-    # result = GPT4()._call("10个字描述北京")
+    result = GPT4_MODEL_WITH_WEB.invoke("https://tieba.baidu.com/hottopic/browse/hottopic?topic_id=28343419&amp;topic_name=AL%E5%86%B3%E8%83%9C%E5%B1%80%E8%BE%93T1%E8%B0%81%E8%83%8C%E9%94%85该链接的原文是什么")
+    result = parse_gpt4_web_response(result)["text"]
     print(result)
 
 

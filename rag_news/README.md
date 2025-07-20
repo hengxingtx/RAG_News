@@ -1,106 +1,84 @@
-# RAG News 系统
+# RAG_News 热榜爬虫
 
-RAG News 是一个基于检索增强生成(Retrieval Augmented Generation)技术的新闻系统。
+这是一个用于获取各大网站热榜数据的Python爬虫项目。目前支持以下热榜源：
 
-## 系统组件
+- 知乎热榜
+- 微博热搜
+- B站热搜
+- B站热门视频
 
-系统分为两部分：
-
-1. 后端API (FastAPI)
-2. 前端界面 (React + Vite)
-
-## 启动系统
-
-### 第一步：启动后端API
-
-有多种方式可以启动后端API服务：
-
-#### 方法1：使用启动脚本（推荐）
+## 安装依赖
 
 ```bash
-# 在项目根目录下运行
-python rag_news/start_api.py
+uv pip install httpx
 ```
 
-此脚本会自动检测是否有端口冲突，如果默认的8000端口被占用，会自动选择一个可用的端口。
+## 使用方法
 
-您也可以手动指定端口：
+### 列出所有可用的热榜源
 
 ```bash
-python rag_news/start_api.py --port 8001
+python -m rag_news.main -l
 ```
 
-#### 方法2：直接使用Python模块
+### 获取特定热榜源的数据
 
 ```bash
-python -m rag_news.api.server
+python -m rag_news.main -s zhihu
 ```
 
-#### 方法3：使用uvicorn
+### 获取所有热榜源的数据
 
 ```bash
-uvicorn rag_news.api.server:app --reload
+python -m rag_news.main
 ```
 
-### 第二步：启动前端
-
-确保后端API服务器正常运行在端口8000上（默认设置）。
-
-启动前端开发服务器：
+### 将结果保存到文件
 
 ```bash
-cd rag_news/frontend
-npm install  # 首次运行时安装依赖
-
-# 以下两个命令均可启动开发服务器
-npm run dev  # Vite推荐的启动方式
-# 或
-npm start    # 兼容方式
+python -m rag_news.main -o data/hotlist.json
 ```
 
-前端开发服务器启动后，通常会在浏览器中自动打开 `http://localhost:5173` 地址。
-
-## 登录系统
-
-系统预置了一个测试账户：
-
-- 用户名: admin
-- 密码: password
-
-## 常见问题解决
-
-### 端口冲突
-
-如果遇到端口被占用的错误：
+## 项目结构
 
 ```
-ERROR: [Errno 48] Address already in use
+rag_news/
+├── __init__.py      # 包初始化文件
+├── main.py          # 主程序入口
+└── sources/         # 热榜源实现
+    ├── __init__.py  # 源模块初始化
+    ├── base.py      # 源基类定义
+    ├── utils.py     # 工具类
+    ├── zhihu.py     # 知乎热榜
+    ├── weibo.py     # 微博热搜
+    └── bilibili.py  # B站热搜和热门视频
 ```
 
-使用 `start_api.py` 脚本启动，它会自动查找可用端口：
+## 扩展新的热榜源
 
-```bash
-python rag_news/start_api.py
-```
+1. 在`sources/`目录下创建新的源文件，例如`toutiao.py`
+2. 实现新的源类，继承自`HotListSource`或`Source`
+3. 在`sources/__init__.py`中注册新源
 
-或者手动指定一个不同的端口：
+示例：
 
-```bash
-python rag_news/start_api.py --port 8001
-```
+```python
+# sources/toutiao.py
+from typing import Dict, List, Any, TypedDict
+from .base import HotListSource
+from .utils import NewsItem, my_fetch
 
-### 依赖安装问题
+class ToutiaoHotSearch(HotListSource):
+    """今日头条热搜"""
+    
+    def __init__(self, interval: int = 300):
+        url = "https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc"
+        super().__init__("今日头条热搜", url, interval)
+        
+    async def fetch_items(self) -> List[NewsItem]:
+        # 实现爬取逻辑...
+        pass
 
-安装所有必要的依赖：
-
-```bash
-python -m rag_news.api.install_dependencies
-```
-
-### 前端API连接问题
-
-如果前端无法连接到后端API，请确保后端服务器运行在端口8001上。如果需要更改API地址，请修改`rag_news/frontend/src/pages/Login.tsx`文件中的`API_BASE_URL`常量。
-
-### "Missing script: start" 错误
-
-如果遇到 `npm ERR! Missing script: "start"` 错误，请使用 `npm run dev` 命令代替 `npm start` 命令启动前端。这是因为项目使用了Vite构建工具，其默认启动命令是 `dev`。 
+# sources/__init__.py 中注册
+source_manager.register("toutiao", ToutiaoHotSearch())
+``` 
